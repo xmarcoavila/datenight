@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Question Flow</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="questionBox">
+  <h2 id="question">Do you like coffee?</h2>
+  <button onclick="answer('yes')">Yes</button>
+  <button onclick="answer('no')">No</button>
+</div>
+
+<script>
+  function answer(choice) {
+    const question = document.getElementById("question");
+    const box = document.getElementById("questionBox");
+
+    if (choice === "yes") {
+      question.innerText = "Hot or iced coffee?";
+      box.innerHTML += `
+        <br>
+        <button onclick="finalAnswer('Hot')">Hot</button>
+        <button onclick="finalAnswer('Iced')">Iced</button>
+      `;
+    } else {
+      question.innerText = "Tea person or energy drinks?";
+      box.innerHTML += `
+        <br>
+        <button onclick="finalAnswer('Tea')">Tea</button>
+        <button onclick="finalAnswer('Energy Drink')">Energy Drinks</button>
+      `;
+    }
+  }
+
+  function finalAnswer(result) {
+    document.getElementById("questionBox").innerHTML = `
+      <h2>You chose: ${result}</h2>
+      <p>Thanks for answering!</p>
+    `;
+  }
+</script>
+
+</body>
+</html>
